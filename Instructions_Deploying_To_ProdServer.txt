@@ -1,0 +1,29 @@
+Instruction for Deploying to Prod Server:
+Create a new Ubuntu VM
+Region same as your jenkins
+Ubuntu Boot Disk
+Tick "http server" to open port 80
+SSH onto that VM
+Install docker 
+curl https://get.docker.com | sudo bash
+Create a new jenkins user
+sudo adduser jenkins
+Add the jenkins user to the docker group
+sudo usermod -aG docker jenkins
+Swap into the jenkins user and configure docker:
+sudo su jenkins
+docker login
+On your JENKINS server swap into the jenkins user and generate a new ssh key
+sudo su jenkins
+ssh-keygen
+cat ~/.ssh/id_rsa
+On the PROD server, as the jenkins user, create the file for the public key to go in and paste the pub key
+mkdir ~/.ssh
+cd ~/.ssh
+touch authorized_keys
+nano authorized_keys
+On the Jenkins server: check the ssh connection
+ssh -i ~/.ssh/id_rsa jenkins@PRODIP
+Edit your Jenkinsfile to use ssh, please find my github below:
+https://github.com/PCMBarber/mea16-task1
+has context menu

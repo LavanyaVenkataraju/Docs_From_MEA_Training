@@ -1,0 +1,83 @@
+
+Create VMs:
+jenks
+prod
+
+
+Create firewall rule
+piers-project-port-8080
+target tags = above
+source = 0.0.0.0/
+8080
+
+piers-proj-jenk
+netword tags = past the firewall. 
+
+SSH into both jenkins and prod servers
+
+Installation Jenkins
+___________________
+
+sudo apt update
+
+sudo apt install openjdk-17-jre
+
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null 
+
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null 
+
+sudo apt-get update 
+
+sudo apt-get install jenkins
+_________________
+
+open the external ip from VM - opens the gui jenkins
+sudo cat /var/
+
+create user and it shows dashb
+
+____
+Install docker:
+
+$ curl https://get.docker.com | sudo bash 
+
+sudo adduser jenkins ( on prod)
+sudo usermod -aG
+
+_______
+PROD
+sudo usermod docker jenkins
+sudo su jenkins
+cd
+docker login 
+username :docker username
+pwd: 
+
+ls -a
+mkdir .ssh
+touch authorized_keys
+nano authorized_keys
+
+paste the id_rsa.pub into the above file
+
+On Jenkins 
+ssh -i ~/.ssh/id_rsa jenkins@ipaddress of prod
+
+exit
+___________________
+
+git clone in gitbash
+
+Jenkins 
+Dashboard - > new project = Week2 proj
+
+Copy the url of the proj
+on Config 
+
+Repository url = what you copied
+On Github :
+
+Settings - Webhook = 
+https://ip external/git-webhook/
+
+

@@ -1,0 +1,32 @@
+Stretch Goal 1:
+
+Put the flask app behind an NGINX container using proxy pass
+
+Considerations:
+You will now need a Network for your containers
+You will need a new folder for your 'nginx.conf' and it's 'Dockerfile'
+Use previous knowledge of Task1 to write the nginx.conf
+
+Stretch Stretch Goal 1:
+
+Configure your nginx.conf so you no longer have to type /index.html at the end of your IP to access the app
+
+Your IP to access the app should go from:
+ http://IPADDRESS:80/index.html
+To:
+ http://IPADDRESS:80
+
+
+
+
+Stretch Goal 2:
+
+Configure a Test server and use Groovy if statements to deploy to a different server based on which branch you're on. 
+
+dev branch -> Test
+main branch -> Prod
+
+Use this Repositorie's Jenkinsfile to inform your changes:
+https://github.com/PCMBarber/LBG-Python-API-Sprint3
+
+You will need 2 different Jenkins Jobs one looking at main, you should already have, one looking at the new branch dev

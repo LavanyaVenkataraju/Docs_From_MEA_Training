@@ -1,0 +1,58 @@
+Docker file: 
+
+From Base image
+
+workdir /app 
+set this as the user home for the container
+
+Copy . . 
+copy from where the docker file is to /app
+
+Requirement.txt = install dependencies
+
+Entry point - marks the containers main process. 
+
+
+_________________________
+Jenkinsfile
+Stages(init){
+sh '''
+ssh -i ~/.ssh/id_rsa jenkins@PROD-IP << EOF
+### EOF - here doc
+docker stop flask-app || echo "flask-app not running"
+docker rmflask-app || echo "flask-app not running"
+'''
+
+stage (build){
+docker build -t stratcastor/python-api -t    :vS{BUILD_NUMBER)
+
+}
+Stage ( push)
+{
+docker push stratcaster/python-api
+docker push stratcaster/python-api:v$
+}
+
+Stage ( deploy)
+{
+ssh -i ~/.ssh/id_rsa jenkins@PROD-IP <<EOF
+docker run -t -p 80:8080 --name flask-app stratcastor/python-api 
+
+}
+
+Stage ( cleanup )
+{
+Docker system prune
+
+}
+____________________________
+git add.
+commit
+push 
+_______
+
+Jenkins 
+
+Prod - 
+external ip /index.html
+
